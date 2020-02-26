@@ -12,21 +12,61 @@ class BinarySearchTree:
 
     # Insert the given value into the tree
     def insert(self, value):
-        pass
+        
+       # print(self.value)
+        if value >= self.value:
+            if self.right is None:
+                self.right = BinarySearchTree(value)
+                return
+            else:
+                self = self.right
+                return self.insert(value)
+        else:
+            value < self.value
+            if self.left is None:
+                self.left = BinarySearchTree(value)
+                return
+            else:
+                self = self.left
+                return self.insert(value)
 
     # Return True if the tree contains the value
     # False if it does not
     def contains(self, target):
-        pass
+        if self.value == target:
+            return(True)
 
+        elif target > self.value:
+            if self.right is None:
+                return False
+            else:
+                self = self.right
+                return self.contains(target) 
+        else:    
+            if self.left is None:
+                return False
+            else:
+                self = self.left
+                return self.contains(target)        
     # Return the maximum value found in the tree
     def get_max(self):
-        pass
+        if self.right is None:
+            return self.value
+        else:
+            self = self.right
+            return self.get_max()
 
     # Call the function `cb` on the value of each node
     # You may use a recursive or iterative approach
     def for_each(self, cb):
-        pass
+        cb(self.value)
+        if self.right is not None:
+            self = self.right
+            self.for_each(cb)
+        if self.left is not None:
+            self = self.left
+            self.for_each(cb)
+            
 
     # DAY 2 Project -----------------------
 
@@ -55,3 +95,21 @@ class BinarySearchTree:
     # Print Post-order recursive DFT
     def post_order_dft(self, node):
         pass
+
+a = BinarySearchTree(5)
+
+a.insert(6)
+
+a.insert(7)
+
+a.insert(-6)
+
+a.insert(-7)
+
+print(a.contains(5))
+print(a.contains(6))
+print(a.contains(7))
+print(a.contains(-7))
+print(a.contains(-8))
+print(a.contains(10))
+print(a.get_max())
