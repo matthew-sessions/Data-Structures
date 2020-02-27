@@ -60,12 +60,13 @@ class BinarySearchTree:
     # You may use a recursive or iterative approach
     def for_each(self, cb):
         cb(self.value)
-        if self.right is not None:
-            self = self.right
-            self.for_each(cb)
-        if self.left is not None:
-            self = self.left
-            self.for_each(cb)
+        # if self.right and self.left:
+        #     self.left.for_each(cb)
+        #     self.right.for_each(cb)
+        if self.right:
+            self.right.for_each(cb)
+        if self.left:
+            self.left.for_each(cb)
             
 
     # DAY 2 Project -----------------------
@@ -73,43 +74,108 @@ class BinarySearchTree:
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
     def in_order_print(self, node):
-        pass
+        if node:
+            if node.left:
+                node.in_order_print(node.left)
+            
+            
+            print(node.value)
+
+            if node.right:
+                node.in_order_print(node.right)
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
     def bft_print(self, node):
-        pass
+        stack = [node]
+
+        while stack != []:
+            look = stack[0]
+
+            if look.right:
+                stack.append(look.right)
+            if look.left:
+                stack.append(look.left)
+
+            print(look.value)
+            stack = stack[1:]
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
     def dft_print(self, node):
-        pass
+        stack = [node]
+
+        while stack != []:
+ 
+            look = stack[-1]
+            print(look.value)
+            stack = stack[0:-1]
+            if look.right is not None:
+                stack.append(look.right)
+                
+            if look.left is not None:
+                stack.append(look.left)
+
+            
+            
 
     # STRETCH Goals -------------------------
     # Note: Research may be required
 
     # Print Pre-order recursive DFT
     def pre_order_dft(self, node):
-        pass
+        if node:
+            print(node.value),
+            
+
+            node.pre_order_dft(node.left)
+
+            node.pre_order_dft(node.right)
 
     # Print Post-order recursive DFT
     def post_order_dft(self, node):
-        pass
+        if node:
+            node.post_order_dft(node.left)
+            node.post_order_dft(node.right)
+            print(node.value)
 
-a = BinarySearchTree(5)
+# a = BinarySearchTree(5)
 
-a.insert(6)
+# a.insert(6)
 
+# a.insert(7)
+
+# a.insert(-6)
+
+# a.insert(-7)
+
+
+# a.insert(-8)
+# a.insert(10)
+# a.insert(12)
+# a.insert(13)
+# a.insert(11)
+# a.insert(14)
+# a.insert(15)
+# a.insert(19)
+# a.insert(18)
+# a.insert(17)
+
+
+
+# arr = []
+# cb = lambda x: arr.append(x)
+# a.for_each(cb)
+# #print(a.in_order_print(a))
+# a.bft_print(a)
+
+a = BinarySearchTree(1)
+a.insert(8)
+a.insert(5)
 a.insert(7)
+a.insert(6)
+a.insert(3)
+a.insert(4)
+a.insert(2)
 
-a.insert(-6)
-
-a.insert(-7)
-
-print(a.contains(5))
-print(a.contains(6))
-print(a.contains(7))
-print(a.contains(-7))
-print(a.contains(-8))
-print(a.contains(10))
-print(a.get_max())
+a.pre_order_dft(a)
