@@ -124,11 +124,20 @@ class BinarySearchTree:
 
     # Print Pre-order recursive DFT
     def pre_order_dft(self, node):
-        pass
+        if node:
+            print(node.value),
+            
+
+            node.pre_order_dft(node.left)
+
+            node.pre_order_dft(node.right)
 
     # Print Post-order recursive DFT
     def post_order_dft(self, node):
-        pass
+        if node:
+            node.post_order_dft(node.left)
+            node.post_order_dft(node.right)
+            print(node.value)
 
 # a = BinarySearchTree(5)
 
@@ -152,7 +161,7 @@ class BinarySearchTree:
 # a.insert(18)
 # a.insert(17)
 
-#print(a.get_max())
+
 
 # arr = []
 # cb = lambda x: arr.append(x)
@@ -160,13 +169,13 @@ class BinarySearchTree:
 # #print(a.in_order_print(a))
 # a.bft_print(a)
 
-# a = BinarySearchTree(1)
-# a.insert(8)
-# a.insert(5)
-# a.insert(7)
-# a.insert(6)
-# a.insert(3)
-# a.insert(4)
-# a.insert(2)
+a = BinarySearchTree(1)
+a.insert(8)
+a.insert(5)
+a.insert(7)
+a.insert(6)
+a.insert(3)
+a.insert(4)
+a.insert(2)
 
-# a.dft_print(a)
+a.pre_order_dft(a)
