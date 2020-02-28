@@ -76,13 +76,13 @@ class BinarySearchTree:
     def in_order_print(self, node):
         if node:
             if node.left:
-                node.in_order_print(node.left)
+                self.in_order_print(node.left)
             
             
             print(node.value)
 
             if node.right:
-                node.in_order_print(node.right)
+                self.in_order_print(node.right)
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
